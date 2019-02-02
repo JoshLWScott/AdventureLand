@@ -2,7 +2,7 @@ function loadFiles( url ) {
     var httpRequest = new XMLHttpRequest();
     httpRequest.open( 'GET', url, false );
     httpRequest.onreadystatechange = () => {
-        if (ajax.readyState === 4) {
+        if (httpRequest.readyState === 4) {
             switch( httpRequest.status) {
                 case 200:
                     eval.apply( window, [httpRequest.response || httpRequest.responseText] );
