@@ -1,3 +1,6 @@
+
+game_log("General Functions")
+
 function sendGoldToMerchant (amount) {
     send_gold(MerchantName, amount)
 }

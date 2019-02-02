@@ -1,3 +1,6 @@
+
+game_log("Loaded Store")
+
 /* General Variables */
 var EnableCombat = true
 var MerchantName = "Scarlet"
