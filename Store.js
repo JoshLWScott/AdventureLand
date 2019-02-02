@@ -3,7 +3,7 @@ game_log("AutoLoader: Store Injected")
 /* General Variables */
 var EnableCombat = true
 var MerchantName = "Scarlet"
-var minHealPercentage = 0.99
+var minHealPercentage = 0.80
 
 /* List of all our characters */
 var PartyMembers = [
