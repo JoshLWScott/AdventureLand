@@ -10,7 +10,6 @@ function tryHealParty() {
         if (can_heal(player) &&
             player.hp < player.max_hp * minHealPercentage &&
             healWeight === null || player.hp / player.max_hp * 100 < healWeight ) {
-            game_log(`Heal Target: ${player.name}`)
             healWeight = player.hp / player.max_hp * 100
             healTarget = player
         }
@@ -18,6 +17,7 @@ function tryHealParty() {
 
 
     if ( healTarget !== null ) {
+        game_log(`Healing: ${healTarget.name}`)
         heal(healTarget);
         return true
     }
