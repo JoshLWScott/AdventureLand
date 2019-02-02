@@ -1,11 +1,38 @@
 game_log("AutoLoader: Priest Class Script Injected")
 
+function tryHealParty() {
+
+    let healTarget = null
+    let healWeight = null
+
+    PartyMembers.forEach( playerName => {
+        let player = get_player(playerName);
+        if (can_heal(player) &&
+            player.hp < player.max_hp * minHealPercentage &&
+            healWeight === null || player.hp / player.max_hp * 100 < healWeight ) {
+            game_log(`Heal Target: ${player.name}`)
+            healWeight = player.hp / player.max_hp * 100
+            healTarget = player
+        }
+    });
+
+
+    if ( healTarget !== null ) {
+        heal(healTarget);
+        return true
+    }
+
+    return false
+}
+
 setInterval(function(){
 
     use_hp_or_mp();
     loot();
 
     if(!EnableCombat || character.rip || is_moving(character)) return;
+
+    if ( tryHealParty() ) return;
 
     var target=get_targeted_monster();
     if(!target)
