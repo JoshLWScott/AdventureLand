@@ -2,7 +2,7 @@ game_log("AutoLoader: Mage Class Script Injected")
 
 setInterval(function(){
 
-    use_hp_or_mp();
+    betterPotionUsage()
     loot();
 
     if(!EnableCombat || character.rip || is_moving(character)) return;

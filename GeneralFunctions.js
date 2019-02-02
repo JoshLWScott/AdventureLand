@@ -10,3 +10,8 @@ function followLeader () {
         move(GroupLeader.real_x, GroupLeader.real_y);
     }
 }
+
+function betterPotionUsage() {
+    character.hp < character.max_hp - 200 ? use("hp") : null
+    character.mp < character.max_mp - 300 ? use("mp") : null
+}
