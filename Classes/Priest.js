@@ -1,4 +1,4 @@
-game_log("AutoLoader: Default Class Script Injected")
+game_log("AutoLoader: Priest Class Script Injected")
 
 setInterval(function(){
 
