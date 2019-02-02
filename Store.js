@@ -1,5 +1,4 @@
-
-game_log("Loaded Store")
+game_log("AutoLoader: Store Injected")
 
 /* General Variables */
 var EnableCombat = true

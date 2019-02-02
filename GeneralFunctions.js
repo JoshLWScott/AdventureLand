@@ -1,5 +1,5 @@
 
-game_log("General Functions")
+game_log("AutoLoader: GeneralFunctions Injected")
 
 function sendGoldToMerchant (amount) {
     send_gold(MerchantName, amount)
