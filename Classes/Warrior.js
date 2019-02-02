@@ -1,5 +1,9 @@
 game_log("AutoLoader: Warrior Class Script Injected")
 
+
+game_log("Attempting to create a party")
+Party.inviteMembers();
+
 setInterval(function(){
 
     use_hp_or_mp();
