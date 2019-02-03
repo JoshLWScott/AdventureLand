@@ -6,7 +6,7 @@ function sendGoldToMerchant (amount) {
 }
 
 function followLeader () {
-    if (!EnableCombat && GroupLeader !== null) {
+    if (!EnableCombat && Party.getTank() !== null) {
         move(GroupLeader.real_x, GroupLeader.real_y);
     }
 }
