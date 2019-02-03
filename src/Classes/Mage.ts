@@ -18,8 +18,8 @@ class Mage extends ClassController {
 
     private castEnergize(): void {
         if ( MyParty.getTank() !== null ) {
-            game_log(`Last Energize ${this.timeFromLastCast(this.LastCast_Energize)} seconds ago`);
             if ( this.timeFromLastCast(this.LastCast_Energize) > Skills.Mage.Energize.Cooldown ) {
+                game_log(`Casting Energize on: ${MyParty.getTank().name}`);
                 this.LastCast_Energize = new Date()
                 use_skill(Skills.Mage.Energize.SpellName, MyParty.getTank())
             }
