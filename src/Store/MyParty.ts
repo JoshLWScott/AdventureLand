@@ -1,4 +1,4 @@
-export class MyParty {
+class MyParty {
     public static inviteMembers() {
         MY_PARTY_NAMES.map(player => player !== character.name ? send_party_invite(player, true) : null )
     }
