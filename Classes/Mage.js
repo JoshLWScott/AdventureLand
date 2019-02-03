@@ -1,5 +1,7 @@
 game_log("AutoLoader: Mage Class Script Injected")
 
+var lastEnergizeCast = new Date();
+
 setInterval(function(){
 
     loot();
@@ -10,7 +12,16 @@ setInterval(function(){
 
     betterPotionUsage()
 
-    Party.getTank() !== null ? use_skill("energize", Party.getTank()) : null
+
+    if ( Party.getTank() !== null ) {
+
+        var timeFromLastCast = Math.abs( (lastEnergizeCast.getTime() - new Date().getTime()) / 1000 );
+
+        game_log(`Last casted ${timeFromLastCast} seconds ago`);
+
+        if ( timeFromLastCast > 4 )
+            use_skill("energize", Party.getTank())
+    }
 
     var target=get_targeted_monster();
     if(!target)
