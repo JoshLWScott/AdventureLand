@@ -4,7 +4,7 @@ import {Skills} from "../Store/Skills";
 
 class Priest extends ClassController {
 
-    readonly minHealPercentage = 0.90
+    readonly minHealPercentage = 0.80
     readonly curseTargetMaxHealth = 1000
 
     ClassName: string = "Priest";
