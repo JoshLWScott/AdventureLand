@@ -4,7 +4,7 @@ import {MyParty} from "../Store/MyParty";
 export abstract class ClassController {
 
     abstract ClassName: string;
-    abstract Target: any;
+    abstract Target: Player | Monster | Character;
     abstract runClassLoop(): void
 
     protected constructor() {
@@ -51,15 +51,15 @@ export abstract class ClassController {
         if( this.Target && !in_attack_range(this.Target) ) {
             set_message("Moving to target")
             move(
-                character.x+(this.Target.x-character.x)/2,
-                character.y+(this.Target.y-character.y)/2
+                character.x+(this.Target.real_x-character.x)/2,
+                character.y+(this.Target.real_y-character.y)/2
             );
         }
     }
 
     public attackTarget(): void {
-        if(this.Target && can_attack(this.Target)) {
-            set_message("Attacking");
+        if(this.Target !== null && can_attack(this.Target)) {
+            set_message(`Attacking: ${this.Target.name}`);
             attack(this.Target);
         }
     }

@@ -40,12 +40,12 @@ var ClassController = /** @class */ (function () {
     ClassController.prototype.moveToTarget = function () {
         if (this.Target && !in_attack_range(this.Target)) {
             set_message("Moving to target");
-            move(character.x + (this.Target.x - character.x) / 2, character.y + (this.Target.y - character.y) / 2);
+            move(character.x + (this.Target.real_x - character.x) / 2, character.y + (this.Target.real_y - character.y) / 2);
         }
     };
     ClassController.prototype.attackTarget = function () {
-        if (this.Target && can_attack(this.Target)) {
-            set_message("Attacking");
+        if (this.Target !== null && can_attack(this.Target)) {
+            set_message("Attacking: " + this.Target.name);
             attack(this.Target);
         }
     };

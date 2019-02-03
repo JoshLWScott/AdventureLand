@@ -2,16 +2,14 @@ import {ClassController} from "./ClassController";
 import {COMBAT_ENABLED, FOCUS_TANK_TARGET, MY_PARTY_NAMES} from "../Store/Constants";
 
 class Priest extends ClassController {
+    
+    readonly minHealPercentage = 0.80
 
     ClassName: string = "Priest";
     Target: any = null;
 
-    readonly minHealPercentage = 0.80
-
     HealTarget: Player = null;
     HealWeight: number = null;
-
-
 
     constructor() {
         super()
@@ -19,6 +17,10 @@ class Priest extends ClassController {
     }
 
     private healPartyMember(): boolean {
+
+        this.HealTarget = null
+        this.HealWeight = null
+
         MY_PARTY_NAMES.map( playerName => {
             let player = get_player(playerName);
             if (player !== null && can_heal(player) &&
