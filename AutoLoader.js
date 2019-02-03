@@ -4,7 +4,7 @@ function capitalizeFirstLetter(string) {
 
 function loadFiles( url ) {
     var httpRequest = new XMLHttpRequest();
-    httpRequest.open( 'GET', url, false );
+    httpRequest.open( 'GET', `${url}?no_cache=${Math.random()}`, false );
     httpRequest.onreadystatechange = () => {
         if (httpRequest.readyState === 4) {
             switch( httpRequest.status) {
