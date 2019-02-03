@@ -9,7 +9,8 @@ var ClassController = /** @class */ (function () {
             loot(true);
             _this.Target = get_targeted_monster();
             _this.usePotions();
-            FOLLOW_TANK ? _this.moveToTank() : null;
+            if (FOLLOW_TANK)
+                _this.moveToTank();
             _this.runClassLoop();
         }, 1000 / 4);
     }
@@ -23,20 +24,15 @@ var ClassController = /** @class */ (function () {
             this.Target = get_nearest_monster({ min_xp: 100, max_att: 150 });
             if (this.Target) {
                 change_target(this.Target);
-                return true;
             }
             else
                 set_message("No Monsters");
         }
-        return false;
     };
     ClassController.prototype.targetTankEntity = function () {
         if (!this.Target && MyParty.getTank() !== null) {
             this.Target = get_target_of(MyParty.getTank());
-            if (this.Target)
-                return true;
         }
-        return false;
     };
     ClassController.prototype.moveToTarget = function () {
         if (this.Target !== null && !in_attack_range(this.Target)) {

@@ -16,7 +16,9 @@ export abstract class ClassController {
             this.Target = get_targeted_monster();
             this.usePotions();
 
-            FOLLOW_TANK ? this.moveToTank() : null
+            if ( FOLLOW_TANK )
+                this.moveToTank()
+
 
             this.runClassLoop()
         }, 1000 / 4)
@@ -27,25 +29,19 @@ export abstract class ClassController {
         return Math.abs( (lastCast.getTime() - new Date().getTime()) / 1000 )
     }
 
-    public targetLocalEntity(): boolean {
+    public targetLocalEntity(): void {
         if(!this.Target) {
             game_log("Attempting to find a local target")
             this.Target = get_nearest_monster({min_xp:100,max_att:150});
-            if (this.Target) {
-                change_target(this.Target)
-                return true
-            } else set_message("No Monsters");
+            if (this.Target) { change_target(this.Target) }
+            else set_message("No Monsters");
         }
-        return false
     }
 
-    public targetTankEntity(): boolean {
+    public targetTankEntity(): void {
         if ( !this.Target && MyParty.getTank() !== null ) {
             this.Target = get_target_of(MyParty.getTank())
-            if ( this.Target )
-                return true
         }
-        return false
     }
 
     public moveToTarget(): void {
