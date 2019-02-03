@@ -31,13 +31,9 @@ var Priest = /** @class */ (function (_super) {
         this.HealWeight = null;
         MY_PARTY_NAMES.map(function (playerName) {
             var player = get_player(playerName);
-            game_log("Loop: " + playerName);
-            game_log("minHealPercentage: " + (player.hp < player.max_hp * _this.minHealPercentage));
-            game_log("HealWeight: " + (player.hp / player.max_hp * 100 < _this.HealWeight));
             if (player !== null && can_heal(player) &&
                 player.hp < player.max_hp * _this.minHealPercentage &&
-                player.hp / player.max_hp * 100 < _this.HealWeight) {
-                _this.HealWeight = player.hp / player.max_hp * 100;
+                _this.HealTarget === null) {
                 _this.HealTarget = player;
             }
         });
