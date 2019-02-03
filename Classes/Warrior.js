@@ -6,10 +6,11 @@ Party.inviteMembers();
 
 setInterval(function(){
 
-    betterPotionUsage()
     loot();
 
     if(!EnableCombat || character.rip || is_moving(character)) return;
+
+    betterPotionUsage()
 
     var target=get_targeted_monster();
     if(!target)

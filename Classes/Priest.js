@@ -27,7 +27,6 @@ function tryHealParty() {
 
 setInterval(function(){
 
-    betterPotionUsage()
     loot();
 
     if(!EnableCombat || character.rip || is_moving(character)) return;
@@ -35,6 +34,7 @@ setInterval(function(){
     if ( tryHealParty() ) return;
 
     if (!EnableCombat) { followLeader(); return; }
+    betterPotionUsage()
 
 
     var target=get_targeted_monster();
