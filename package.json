@@ -1,0 +1,29 @@
+{
+  "name": "AdventureLand",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "dependencies": {
+    "tsd-jsdoc": "^2.1.2"
+  },
+  "devDependencies": {
+    "parallel-webpack": "^2.3.0",
+    "terser": "^3.14.1",
+    "webpack": "^4.29.0",
+    "webpack-cli": "^3.2.1"
+  },
+  "scripts": {
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JoshLWScott/AdventureLand.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JoshLWScott/AdventureLand/issues"
+  },
+  "homepage": "https://github.com/JoshLWScott/AdventureLand#readme"
+}
