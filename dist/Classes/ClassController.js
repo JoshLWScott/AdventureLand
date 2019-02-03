@@ -3,6 +3,7 @@ import { MyParty } from "../Store/MyParty";
 var ClassController = /** @class */ (function () {
     function ClassController() {
         var _this = this;
+        this.TargetName = "armadillo";
         setInterval(function () {
             if (character.rip || is_moving(character))
                 return;
@@ -20,7 +21,7 @@ var ClassController = /** @class */ (function () {
     };
     ClassController.prototype.targetLocalEntity = function () {
         if (!this.Target) {
-            this.Target = get_nearest_monster({ min_xp: 100, max_att: 150 });
+            this.Target = get_nearest_monster({ min_xp: 100, max_att: 150, type: this.TargetName });
             if (this.Target) {
                 change_target(this.Target);
             }

@@ -3,6 +3,8 @@ import {MyParty} from "../Store/MyParty";
 
 export abstract class ClassController {
 
+    readonly TargetName: string = "armadillo";
+
     abstract ClassName: string;
     abstract Target: Player | Monster | Character;
     abstract runClassLoop(): void
@@ -31,7 +33,7 @@ export abstract class ClassController {
 
     public targetLocalEntity(): void {
         if(!this.Target) {
-            this.Target = get_nearest_monster({min_xp:100,max_att:150});
+            this.Target = get_nearest_monster({min_xp:100,max_att:150, type: this.TargetName});
             if (this.Target) { change_target(this.Target) }
             else set_message("No Monsters");
         }
