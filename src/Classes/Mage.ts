@@ -1,8 +1,3 @@
-import {ClassController} from "./ClassController";
-import {MyParty} from "../Store/MyParty";
-import {Skills} from "../Store/Skills";
-import {COMBAT_ENABLED, FOCUS_TANK_TARGET} from "../Store/Constants";
-
 class Mage extends ClassController {
 
     ClassName: string = "Mage";

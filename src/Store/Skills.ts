@@ -26,6 +26,3 @@ export class Skills {
     public static Warrior: Warrior = new Warrior()
     public static Priest: Priest = new Priest()
 }
-
-
-
