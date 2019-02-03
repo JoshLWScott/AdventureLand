@@ -20,12 +20,14 @@ function loadFiles( url ) {
 
 /* Array of files we should load into our game */
 let FilesToLoad = [
-    "https://raw.githubusercontent.com/JoshLWScott/AdventureLand/master/Store.js",
-    "https://raw.githubusercontent.com/JoshLWScott/AdventureLand/master/GeneralFunctions.js",
+    "https://raw.githubusercontent.com/JoshLWScott/AdventureLand/master/dist/Store/Constants.js",
+    "https://raw.githubusercontent.com/JoshLWScott/AdventureLand/master/dist/Store/MyParty.js",
+    "https://raw.githubusercontent.com/JoshLWScott/AdventureLand/master/dist/Store/Skills.js",
+    "https://raw.githubusercontent.com/JoshLWScott/AdventureLand/master/dist/Classes/ClassController.js",
 ]
 
 /* Add our class file */
-FilesToLoad.push("https://raw.githubusercontent.com/JoshLWScott/AdventureLand/master/Classes/" + capitalizeFirstLetter(character.ctype) + ".js");
+FilesToLoad.push("https://raw.githubusercontent.com/JoshLWScott/AdventureLand/master/dist/Classes/" + capitalizeFirstLetter(character.ctype) + ".js");
 
 /* Loop through them and load them in */
 FilesToLoad.forEach( url => loadFiles(url) )
