@@ -34,9 +34,7 @@ class Mage extends ClassController {
 
             this.moveToTarget()
             this.attackTarget()
-
             this.castEnergize()
-
         }
         else this.moveToTank();
     }

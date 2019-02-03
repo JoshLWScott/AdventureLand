@@ -14,9 +14,7 @@ class Warrior extends ClassController {
     runClassLoop(): void {
 
         if ( COMBAT_ENABLED ) {
-
-            if ( !this.targetLocalEntity() ) return
-
+            this.targetLocalEntity()
             this.moveToTarget()
             this.attackTarget()
         }

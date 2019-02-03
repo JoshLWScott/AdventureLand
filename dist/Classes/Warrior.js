@@ -21,8 +21,7 @@ var Warrior = /** @class */ (function (_super) {
     }
     Warrior.prototype.runClassLoop = function () {
         if (COMBAT_ENABLED) {
-            if (!this.targetLocalEntity())
-                return;
+            this.targetLocalEntity();
             this.moveToTarget();
             this.attackTarget();
         }

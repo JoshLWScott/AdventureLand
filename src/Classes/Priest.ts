@@ -46,10 +46,7 @@ class Priest extends ClassController {
 
         if ( COMBAT_ENABLED ) {
 
-            if ( FOCUS_TANK_TARGET )
-                if ( !this.targetTankEntity() ) return
-            else
-                if ( !this.targetLocalEntity() ) return
+            FOCUS_TANK_TARGET ? this.targetTankEntity() : this.targetLocalEntity()
 
             this.moveToTarget()
             this.attackTarget()
