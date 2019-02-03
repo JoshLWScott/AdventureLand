@@ -10,10 +10,7 @@ setInterval(function(){
 
     betterPotionUsage()
 
-    setInterval(() => {
-        Party.getTank() !== null ? use_skill("energize", Party.getTank()) : null
-    }, 4000)
-
+    Party.getTank() !== null ? use_skill("energize", Party.getTank()) : null
 
     var target=get_targeted_monster();
     if(!target)
