@@ -15,4 +15,13 @@ module.exports = [
             path: path.resolve(__dirname, 'dist/build')
         }
     },
+
+    {
+        entry: './dist/Classes/Priest.js',
+        output: {
+            filename: 'Priest.js',
+            path: path.resolve(__dirname, 'dist/build')
+        }
+    },
+
 ]
