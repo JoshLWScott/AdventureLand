@@ -3,7 +3,7 @@ import { MyParty } from "../Store/MyParty";
 var ClassController = /** @class */ (function () {
     function ClassController() {
         var _this = this;
-        this.TargetName = "armadillo";
+        this.TargetName = "bee";
         setInterval(function () {
             if (character.rip || is_moving(character))
                 return;

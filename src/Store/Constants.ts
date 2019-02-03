@@ -1,7 +1,7 @@
 
 export const COMBAT_ENABLED: boolean = true;
 export const FOLLOW_TANK: boolean = false;
-export const FOCUS_TANK_TARGET: boolean = true
+export const FOCUS_TANK_TARGET: boolean = false
 
 
 /* Used to send stuff over to personal Merchant */
