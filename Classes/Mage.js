@@ -19,8 +19,10 @@ setInterval(function(){
 
         game_log(`Last casted ${timeFromLastCast} seconds ago`);
 
-        if ( timeFromLastCast > 4 )
+        if ( timeFromLastCast > 4 ) {
+            lastEnergizeCast = new Date()
             use_skill("energize", Party.getTank())
+        }
     }
 
     var target=get_targeted_monster();
