@@ -45,9 +45,7 @@ class Priest extends ClassController {
         if ( this.healPartyMember() ) return
 
         if ( COMBAT_ENABLED ) {
-
             FOCUS_TANK_TARGET ? this.targetTankEntity() : this.targetLocalEntity()
-
             this.moveToTarget()
             this.attackTarget()
         }

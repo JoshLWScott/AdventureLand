@@ -26,12 +26,8 @@ class Mage extends ClassController {
 
     runClassLoop(): void {
 
-        game_log("runClassLoop")
-
         if ( COMBAT_ENABLED ) {
-
             FOCUS_TANK_TARGET ? this.targetTankEntity() : this.targetLocalEntity()
-
             this.moveToTarget()
             this.attackTarget()
             this.castEnergize()

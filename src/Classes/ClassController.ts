@@ -31,7 +31,6 @@ export abstract class ClassController {
 
     public targetLocalEntity(): void {
         if(!this.Target) {
-            game_log("Attempting to find a local target")
             this.Target = get_nearest_monster({min_xp:100,max_att:150});
             if (this.Target) { change_target(this.Target) }
             else set_message("No Monsters");

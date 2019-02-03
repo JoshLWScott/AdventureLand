@@ -31,7 +31,6 @@ var Mage = /** @class */ (function (_super) {
         }
     };
     Mage.prototype.runClassLoop = function () {
-        game_log("runClassLoop");
         if (COMBAT_ENABLED) {
             FOCUS_TANK_TARGET ? this.targetTankEntity() : this.targetLocalEntity();
             this.moveToTarget();
