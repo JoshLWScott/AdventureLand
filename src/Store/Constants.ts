@@ -1,5 +1,5 @@
 
-export const COMBAT_ENABLED: boolean = true;
+export const COMBAT_ENABLED: boolean = false;
 export const FOLLOW_TANK: boolean = false;
 export const FOCUS_TANK_TARGET: boolean = false
 

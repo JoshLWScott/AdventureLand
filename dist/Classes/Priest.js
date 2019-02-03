@@ -10,15 +10,18 @@ var __extends = (this && this.__extends) || (function () {
 })();
 import { ClassController } from "./ClassController";
 import { COMBAT_ENABLED, FOCUS_TANK_TARGET, MY_PARTY_NAMES } from "../Store/Constants";
+import { Skills } from "../Store/Skills";
 var Priest = /** @class */ (function (_super) {
     __extends(Priest, _super);
     function Priest() {
         var _this = _super.call(this) || this;
         _this.minHealPercentage = 0.80;
+        _this.curseTargetMaxHealth = 1000;
         _this.ClassName = "Priest";
         _this.Target = null;
         _this.HealTarget = null;
         _this.HealWeight = null;
+        _this.LastCast_Curse = new Date();
         game_log("Injected ClassController: " + _this.ClassName);
         return _this;
     }
@@ -42,12 +45,20 @@ var Priest = /** @class */ (function (_super) {
         }
         return false;
     };
+    Priest.prototype.curseTarget = function () {
+        if (this.timeFromLastCast(this.LastCast_Curse) > Skills.Priest.Curse.Cooldown &&
+            this.curseTargetMaxHealth <= this.Target.max_hp) {
+            game_log("Cursing: " + this.Target.name);
+            use_skill(Skills.Priest.Curse.SpellName, this.Target);
+        }
+    };
     Priest.prototype.runClassLoop = function () {
         if (this.healPartyMember())
             return;
         if (COMBAT_ENABLED) {
             FOCUS_TANK_TARGET ? this.targetTankEntity() : this.targetLocalEntity();
             this.moveToTarget();
+            this.curseTarget();
             this.attackTarget();
         }
         else

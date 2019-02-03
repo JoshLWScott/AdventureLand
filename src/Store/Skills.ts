@@ -19,7 +19,15 @@ class Mage {
 
 class Warrior {}
 
-class Priest {}
+class Priest {
+
+    public Curse: ISpell = {
+        NiceName: "Curse",
+        SpellName: "curse",
+        Cooldown: 5
+    }
+
+}
 
 export class Skills {
     public static Mage: Mage = new Mage()

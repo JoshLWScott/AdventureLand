@@ -6,7 +6,7 @@ import {COMBAT_ENABLED, FOCUS_TANK_TARGET} from "../Store/Constants";
 class Mage extends ClassController {
 
     ClassName: string = "Mage";
-    Target: any = null;
+    Target: Player | Monster | Character = null;
 
     LastCast_Energize: Date = new Date();
     LastCast_ManaBurst: Date = new Date();

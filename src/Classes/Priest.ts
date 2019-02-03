@@ -1,15 +1,19 @@
 import {ClassController} from "./ClassController";
 import {COMBAT_ENABLED, FOCUS_TANK_TARGET, MY_PARTY_NAMES} from "../Store/Constants";
+import {Skills} from "../Store/Skills";
 
 class Priest extends ClassController {
 
     readonly minHealPercentage = 0.80
+    readonly curseTargetMaxHealth = 1000
 
     ClassName: string = "Priest";
-    Target: any = null;
+    Target: Player | Monster | Character = null;
 
     HealTarget: Player = null;
     HealWeight: number = null;
+
+    LastCast_Curse: Date = new Date();
 
     constructor() {
         super()
@@ -40,6 +44,14 @@ class Priest extends ClassController {
         return false
     }
 
+    private curseTarget(): void {
+        if ( this.timeFromLastCast(this.LastCast_Curse) > Skills.Priest.Curse.Cooldown &&
+            this.curseTargetMaxHealth <= this.Target.max_hp ) {
+            game_log(`Cursing: ${this.Target.name}`)
+            use_skill(Skills.Priest.Curse.SpellName, this.Target)
+        }
+    }
+
     runClassLoop(): void {
 
         if ( this.healPartyMember() ) return
@@ -47,7 +59,10 @@ class Priest extends ClassController {
         if ( COMBAT_ENABLED ) {
             FOCUS_TANK_TARGET ? this.targetTankEntity() : this.targetLocalEntity()
             this.moveToTarget()
+
+            this.curseTarget()
             this.attackTarget()
+
         }
         else this.moveToTank();
     }

@@ -20,6 +20,11 @@ var Warrior = /** @class */ (function () {
 }());
 var Priest = /** @class */ (function () {
     function Priest() {
+        this.Curse = {
+            NiceName: "Curse",
+            SpellName: "curse",
+            Cooldown: 5
+        };
     }
     return Priest;
 }());
