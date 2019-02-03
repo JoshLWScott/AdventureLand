@@ -19,7 +19,8 @@ var ClassController = /** @class */ (function () {
     };
     ClassController.prototype.targetLocalEntity = function () {
         if (!this.Target) {
-            this.Target = get_nearest_monster({ min_xp: 100, max_att: 120 });
+            game_log("Attempting to find a local target");
+            this.Target = get_nearest_monster({ min_xp: 100, max_att: 150 });
             if (this.Target) {
                 change_target(this.Target);
                 return true;
@@ -38,7 +39,7 @@ var ClassController = /** @class */ (function () {
         return false;
     };
     ClassController.prototype.moveToTarget = function () {
-        if (this.Target && !in_attack_range(this.Target)) {
+        if (this.Target !== null && !in_attack_range(this.Target)) {
             set_message("Moving to target");
             move(character.x + (this.Target.real_x - character.x) / 2, character.y + (this.Target.real_y - character.y) / 2);
         }
