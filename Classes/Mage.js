@@ -7,6 +7,8 @@ setInterval(function(){
 
     if(!EnableCombat || character.rip || is_moving(character)) return;
 
+    if (!EnableCombat) { followLeader(); return; }
+
     var target=get_targeted_monster();
     if(!target)
     {

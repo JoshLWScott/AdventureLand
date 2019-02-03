@@ -34,6 +34,9 @@ setInterval(function(){
 
     if ( tryHealParty() ) return;
 
+    if (!EnableCombat) { followLeader(); return; }
+
+
     var target=get_targeted_monster();
     if(!target)
     {
