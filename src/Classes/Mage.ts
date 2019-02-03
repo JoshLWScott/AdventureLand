@@ -31,7 +31,7 @@ class Mage extends ClassController {
             this.moveToTarget()
             this.attackTarget()
 
-            this.castEnergize( MyParty.getHealer().mp < MyParty.getHealer().max_mp * 0.60 ? MyParty.getHealer() : MyParty.getTank() )
+            this.castEnergize( MyParty.getHealer().mp < MyParty.getHealer().max_mp / 2 ? MyParty.getHealer() : MyParty.getTank() )
         }
         else this.moveToTank();
     }

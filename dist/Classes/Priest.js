@@ -15,7 +15,7 @@ var Priest = /** @class */ (function (_super) {
     __extends(Priest, _super);
     function Priest() {
         var _this = _super.call(this) || this;
-        _this.minHealPercentage = 0.90;
+        _this.minHealPercentage = 0.80;
         _this.curseTargetMaxHealth = 1000;
         _this.ClassName = "Priest";
         _this.Target = null;

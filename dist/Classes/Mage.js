@@ -23,11 +23,11 @@ var Mage = /** @class */ (function (_super) {
         game_log("Injected ClassController: " + _this.ClassName);
         return _this;
     }
-    Mage.prototype.castEnergize = function () {
-        if (MyParty.getTank() !== null && this.timeFromLastCast(this.LastCast_Energize) > Skills.Mage.Energize.Cooldown) {
-            game_log("Casting Energize on: " + MyParty.getTank().name);
+    Mage.prototype.castEnergize = function (target) {
+        if (target !== null && this.timeFromLastCast(this.LastCast_Energize) > Skills.Mage.Energize.Cooldown) {
+            game_log("Casting Energize on: " + target.name);
             this.LastCast_Energize = new Date();
-            use_skill(Skills.Mage.Energize.SpellName, MyParty.getTank());
+            use_skill(Skills.Mage.Energize.SpellName, target);
         }
     };
     Mage.prototype.runClassLoop = function () {
@@ -35,7 +35,7 @@ var Mage = /** @class */ (function (_super) {
             FOCUS_TANK_TARGET ? this.targetTankEntity() : this.targetLocalEntity();
             this.moveToTarget();
             this.attackTarget();
-            this.castEnergize();
+            this.castEnergize(MyParty.getHealer().mp < MyParty.getHealer().max_mp / 2 ? MyParty.getHealer() : MyParty.getTank());
         }
         else
             this.moveToTank();
