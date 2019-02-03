@@ -7,6 +7,8 @@
     "tsd-jsdoc": "^2.1.2"
   },
   "devDependencies": {
+    "@types/pixi.js": "^4.8.6",
+    "@types/socket.io": "^2.1.2",
     "parallel-webpack": "^2.3.0",
     "terser": "^3.14.1",
     "webpack": "^4.29.0",
