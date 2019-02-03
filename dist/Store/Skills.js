@@ -1,5 +1,5 @@
-class Mage {
-    constructor() {
+var Mage = /** @class */ (function () {
+    function Mage() {
         this.ManaBurst = {
             NiceName: "Mana Burst",
             SpellName: "burst",
@@ -11,14 +11,24 @@ class Mage {
             Cooldown: 4
         };
     }
-}
-class Warrior {
-}
-class Priest {
-}
-export class Skills {
-}
-Skills.Mage = new Mage();
-Skills.Warrior = new Warrior();
-Skills.Priest = new Priest();
-//# sourceMappingURL=Skills.js.map
+    return Mage;
+}());
+var Warrior = /** @class */ (function () {
+    function Warrior() {
+    }
+    return Warrior;
+}());
+var Priest = /** @class */ (function () {
+    function Priest() {
+    }
+    return Priest;
+}());
+var Skills = /** @class */ (function () {
+    function Skills() {
+    }
+    Skills.Mage = new Mage();
+    Skills.Warrior = new Warrior();
+    Skills.Priest = new Priest();
+    return Skills;
+}());
+export { Skills };
