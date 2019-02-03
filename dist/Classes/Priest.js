@@ -46,7 +46,8 @@ var Priest = /** @class */ (function (_super) {
         return false;
     };
     Priest.prototype.curseTarget = function () {
-        if (this.timeFromLastCast(this.LastCast_Curse) > Skills.Priest.Curse.Cooldown &&
+        if (this.Target !== null &&
+            this.timeFromLastCast(this.LastCast_Curse) > Skills.Priest.Curse.Cooldown &&
             this.curseTargetMaxHealth <= this.Target.max_hp) {
             game_log("Cursing: " + this.Target.name);
             use_skill(Skills.Priest.Curse.SpellName, this.Target);
