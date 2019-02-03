@@ -24,18 +24,14 @@ var Mage = /** @class */ (function (_super) {
         return _this;
     }
     Mage.prototype.castEnergize = function () {
-        if (MyParty.getTank() !== null) {
-            if (this.timeFromLastCast(this.LastCast_Energize) > Skills.Mage.Energize.Cooldown) {
-                game_log("Casting Energize on: " + MyParty.getTank().name);
-                this.LastCast_Energize = new Date();
-                use_skill(Skills.Mage.Energize.SpellName, MyParty.getTank());
-            }
+        if (MyParty.getTank() !== null && this.timeFromLastCast(this.LastCast_Energize) > Skills.Mage.Energize.Cooldown) {
+            game_log("Casting Energize on: " + MyParty.getTank().name);
+            this.LastCast_Energize = new Date();
+            use_skill(Skills.Mage.Energize.SpellName, MyParty.getTank());
         }
     };
     Mage.prototype.runClassLoop = function () {
         if (COMBAT_ENABLED) {
-            /* Energize the tank */
-            this.castEnergize();
             if (FOCUS_TANK_TARGET)
                 if (!this.targetTankEntity())
                     return;
@@ -43,6 +39,7 @@ var Mage = /** @class */ (function (_super) {
                     return;
             this.moveToTarget();
             this.attackTarget();
+            this.castEnergize();
         }
         else
             this.moveToTank();

@@ -17,20 +17,16 @@ class Mage extends ClassController {
     }
 
     private castEnergize(): void {
-        if ( MyParty.getTank() !== null ) {
-            if ( this.timeFromLastCast(this.LastCast_Energize) > Skills.Mage.Energize.Cooldown ) {
-                game_log(`Casting Energize on: ${MyParty.getTank().name}`);
-                this.LastCast_Energize = new Date()
-                use_skill(Skills.Mage.Energize.SpellName, MyParty.getTank())
-            }
+        if ( MyParty.getTank() !== null && this.timeFromLastCast(this.LastCast_Energize) > Skills.Mage.Energize.Cooldown ) {
+            game_log(`Casting Energize on: ${MyParty.getTank().name}`);
+            this.LastCast_Energize = new Date()
+            use_skill(Skills.Mage.Energize.SpellName, MyParty.getTank())
         }
     }
 
     runClassLoop(): void {
 
         if ( COMBAT_ENABLED ) {
-            /* Energize the tank */
-            this.castEnergize()
 
             if ( FOCUS_TANK_TARGET )
                 if ( !this.targetTankEntity() ) return
@@ -39,6 +35,9 @@ class Mage extends ClassController {
 
             this.moveToTarget()
             this.attackTarget()
+
+            this.castEnergize()
+
         }
         else this.moveToTank();
     }

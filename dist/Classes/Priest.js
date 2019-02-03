@@ -14,9 +14,9 @@ var Priest = /** @class */ (function (_super) {
     __extends(Priest, _super);
     function Priest() {
         var _this = _super.call(this) || this;
+        _this.minHealPercentage = 0.80;
         _this.ClassName = "Priest";
         _this.Target = null;
-        _this.minHealPercentage = 0.80;
         _this.HealTarget = null;
         _this.HealWeight = null;
         game_log("Injected ClassController: " + _this.ClassName);
@@ -24,6 +24,8 @@ var Priest = /** @class */ (function (_super) {
     }
     Priest.prototype.healPartyMember = function () {
         var _this = this;
+        this.HealTarget = null;
+        this.HealWeight = null;
         MY_PARTY_NAMES.map(function (playerName) {
             var player = get_player(playerName);
             if (player !== null && can_heal(player) &&
@@ -33,7 +35,7 @@ var Priest = /** @class */ (function (_super) {
                 _this.HealTarget = player;
             }
         });
-        if (this.HealTarget !== null) {
+        if (this.HealTarget !== null && can_heal(this.HealTarget)) {
             game_log("Healing: " + this.HealTarget.name);
             heal(this.HealTarget);
             return true;

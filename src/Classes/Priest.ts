@@ -2,7 +2,7 @@ import {ClassController} from "./ClassController";
 import {COMBAT_ENABLED, FOCUS_TANK_TARGET, MY_PARTY_NAMES} from "../Store/Constants";
 
 class Priest extends ClassController {
-    
+
     readonly minHealPercentage = 0.80
 
     ClassName: string = "Priest";
@@ -31,7 +31,7 @@ class Priest extends ClassController {
             }
         })
 
-        if ( this.HealTarget !== null ) {
+        if ( this.HealTarget !== null && can_heal(this.HealTarget) ) {
             game_log(`Healing: ${this.HealTarget.name}`)
             heal(this.HealTarget);
             return true
