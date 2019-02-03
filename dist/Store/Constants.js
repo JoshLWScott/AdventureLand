@@ -1,4 +1,4 @@
-export var COMBAT_ENABLED = false;
+export var COMBAT_ENABLED = true;
 export var FOLLOW_TANK = false;
 export var FOCUS_TANK_TARGET = false;
 /* Used to send stuff over to personal Merchant */

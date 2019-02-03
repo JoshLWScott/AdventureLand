@@ -9,19 +9,40 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 import { ClassController } from "./ClassController";
-import { COMBAT_ENABLED, FOCUS_TANK_TARGET } from "../Store/Constants";
+import { COMBAT_ENABLED, FOCUS_TANK_TARGET, MY_PARTY_NAMES } from "../Store/Constants";
 var Priest = /** @class */ (function (_super) {
     __extends(Priest, _super);
     function Priest() {
         var _this = _super.call(this) || this;
         _this.ClassName = "Priest";
         _this.Target = null;
-        _this.LastCast_Energize = new Date();
-        _this.LastCast_ManaBurst = new Date();
+        _this.minHealPercentage = 0.80;
+        _this.HealTarget = null;
+        _this.HealWeight = null;
         game_log("Injected ClassController: " + _this.ClassName);
         return _this;
     }
+    Priest.prototype.healPartyMember = function () {
+        var _this = this;
+        MY_PARTY_NAMES.map(function (playerName) {
+            var player = get_player(playerName);
+            if (player !== null && can_heal(player) &&
+                player.hp < player.max_hp * _this.minHealPercentage &&
+                _this.HealWeight === null || player.hp / player.max_hp * 100 < _this.HealWeight) {
+                _this.HealWeight = player.hp / player.max_hp * 100;
+                _this.HealTarget = player;
+            }
+        });
+        if (this.HealTarget !== null) {
+            game_log("Healing: " + this.HealTarget.name);
+            heal(this.HealTarget);
+            return true;
+        }
+        return false;
+    };
     Priest.prototype.runClassLoop = function () {
+        if (this.healPartyMember())
+            return;
         if (COMBAT_ENABLED) {
             if (FOCUS_TANK_TARGET)
                 if (!this.targetTankEntity())
