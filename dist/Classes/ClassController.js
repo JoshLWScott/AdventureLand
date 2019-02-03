@@ -6,6 +6,7 @@ var ClassController = /** @class */ (function () {
         setInterval(function () {
             if (character.rip || is_moving(character))
                 return;
+            loot(true);
             _this.Target = get_targeted_monster();
             _this.usePotions();
             FOLLOW_TANK ? _this.moveToTank() : null;

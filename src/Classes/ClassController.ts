@@ -11,6 +11,8 @@ export abstract class ClassController {
         setInterval(() => {
             if(character.rip || is_moving(character)) return;
 
+            loot(true);
+
             this.Target = get_targeted_monster();
             this.usePotions();
 
