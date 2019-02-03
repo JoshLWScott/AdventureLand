@@ -1,3 +1,5 @@
+import { FOLLOW_TANK } from "../Store/Constants";
+import { MyParty } from "../Store/MyParty";
 var ClassController = /** @class */ (function () {
     function ClassController() {
         var _this = this;

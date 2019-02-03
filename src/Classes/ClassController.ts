@@ -1,3 +1,6 @@
+import {FOLLOW_TANK} from "../Store/Constants";
+import {MyParty} from "../Store/MyParty";
+
 export abstract class ClassController {
 
     abstract ClassName: string;

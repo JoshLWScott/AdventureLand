@@ -4,7 +4,7 @@ interface ISpell {
     Cooldown: number
 }
 
-class IMage {
+class Mage {
     public ManaBurst: ISpell = {
         NiceName: "Mana Burst",
         SpellName: "burst",
@@ -17,12 +17,15 @@ class IMage {
     }
 }
 
-class IWarrior {}
+class Warrior {}
 
-class IPriest {}
+class Priest {}
 
-class Skills {
-    public static Mage: IMage = new IMage()
-    public static Warrior: IWarrior = new IWarrior()
-    public static Priest: IPriest = new IPriest()
+export class Skills {
+    public static Mage: Mage = new Mage()
+    public static Warrior: Warrior = new Warrior()
+    public static Priest: Priest = new Priest()
 }
+
+
+

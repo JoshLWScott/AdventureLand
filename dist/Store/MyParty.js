@@ -1,3 +1,4 @@
+import { MY_PARTY_NAMES } from "./Constants";
 var MyParty = /** @class */ (function () {
     function MyParty() {
     }

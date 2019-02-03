@@ -314,6 +314,5 @@ declare function trade_buy(target: Player, trade_slot: number): void
 declare function upgrade(item_num: number, scroll_num: number, offering_num?: number): void
 declare function use(name: number | string, target?: Monster): void
 declare function use_skill(name: string, target?: Monster | Player | Character): void
-declare function load_code(name: string): void
 
 declare const character: Character

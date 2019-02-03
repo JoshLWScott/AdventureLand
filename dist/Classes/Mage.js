@@ -8,6 +8,10 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+import { ClassController } from "./ClassController";
+import { MyParty } from "../Store/MyParty";
+import { Skills } from "../Store/Skills";
+import { COMBAT_ENABLED, FOCUS_TANK_TARGET } from "../Store/Constants";
 var Mage = /** @class */ (function (_super) {
     __extends(Mage, _super);
     function Mage() {
