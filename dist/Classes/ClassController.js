@@ -4,6 +4,10 @@ var ClassController = /** @class */ (function () {
     function ClassController() {
         var _this = this;
         this.TargetName = "bee";
+        this.last_minutes_checked = new Date();
+        this.last_xp_checked_minutes = character.xp;
+        this.last_xp_checked_kill = character.xp;
+        this.init_xptimer(1);
         setInterval(function () {
             if (character.rip || is_moving(character))
                 return;
@@ -13,6 +17,7 @@ var ClassController = /** @class */ (function () {
             if (FOLLOW_TANK)
                 _this.moveToTank();
             _this.runClassLoop();
+            _this.update_xptimer();
         }, 1000 / 4);
     }
     /* Calculate the amount of seconds it's been since the last cast */
@@ -56,6 +61,62 @@ var ClassController = /** @class */ (function () {
         if (MyParty.getTank() !== null) {
             move(MyParty.getTank().real_x, MyParty.getTank().real_y);
         }
+    };
+    ClassController.prototype.init_xptimer = function (minref) {
+        this.minute_refresh = minref || 1;
+        // @ts-ignore
+        parent.add_log(this.minute_refresh.toString() + ' min until refresh!', 0x00FFFF);
+        // @ts-ignore
+        var $ = parent.$;
+        var brc = $('#bottomrightcorner');
+        brc.find('#xptimer').remove();
+        var xpt_container = $('<div id="xptimer"></div>').css({
+            background: 'black',
+            border: 'solid gray',
+            borderWidth: '5px 5px',
+            width: '320px',
+            height: '96px',
+            fontSize: '28px',
+            color: '#77EE77',
+            textAlign: 'center',
+            display: 'table',
+            overflow: 'hidden',
+            marginBottom: '16px'
+        });
+        //vertical centering in css is fun
+        // @ts-ignore
+        var xptimer = $('<div id="xptimercontent"></div>')
+            .css({
+            display: 'table-cell',
+            verticalAlign: 'middle'
+        })
+            .html('Estimated time until level up:<br><span id="xpcounter" style="font-size: 40px !important; line-height: 28px">Loading...</span><br><span id="xprate">(Kill something!)</span>')
+            .appendTo(xpt_container);
+        brc.prepend(xpt_container);
+    };
+    ClassController.prototype.update_xptimer = function () {
+        if (character.xp == this.last_xp_checked_kill)
+            return;
+        // @ts-ignore
+        var $ = parent.$;
+        var now = new Date();
+        var time = Math.round((now.getTime() - this.last_minutes_checked.getTime()) / 1000);
+        if (time < 1)
+            return; // 1s safe delay
+        var xp_rate = Math.round((character.xp - this.last_xp_checked_minutes) / time);
+        if (time > 60 * this.minute_refresh) {
+            this.last_minutes_checked = new Date();
+            this.last_xp_checked_minutes = character.xp;
+        }
+        this.last_xp_checked_kill = character.xp;
+        // @ts-ignore
+        var xp_missing = parent.G.levels[character.level] - character.xp;
+        var seconds = Math.round(xp_missing / xp_rate);
+        var minutes = Math.round(seconds / 60);
+        var hours = Math.round(minutes / 60);
+        var counter = hours + "h " + minutes % 60 + "min";
+        $('#xpcounter').text(counter);
+        $('#xprate').text(xp_rate + " XP/s");
     };
     return ClassController;
 }());
