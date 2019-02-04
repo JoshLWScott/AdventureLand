@@ -21,7 +21,7 @@ var ClassController = /** @class */ (function () {
     };
     ClassController.prototype.targetLocalEntity = function () {
         if (!this.Target) {
-            this.Target = get_nearest_monster({ min_xp: 100, max_att: 150, type: this.TargetName });
+            this.Target = get_nearest_monster({ min_xp: 100, max_att: 200, type: this.TargetName });
             if (this.Target) {
                 change_target(this.Target);
             }
