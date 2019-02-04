@@ -6,5 +6,6 @@ export var MY_MERCHANT_NAME = "Scarlet";
 export var MY_PARTY_NAMES = [
     "Besides",
     "Motivation",
+    "Cartography",
     "Purity",
 ];

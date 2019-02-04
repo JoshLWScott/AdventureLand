@@ -10,5 +10,6 @@ export const MY_MERCHANT_NAME: string = "Scarlet";
 export const MY_PARTY_NAMES: Array<string> = [
     "Besides", // Tank - Warrior
     "Motivation", // DPS - Mage
+    "Cartography", // DPS - Archer
     "Purity", // Healer - Priest
 ]
