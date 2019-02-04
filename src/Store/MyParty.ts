@@ -7,6 +7,7 @@ export class MyParty {
     }
 
     public static getTank() { return get_player(MY_PARTY_NAMES[0]) }
-    public static getDPS() { return get_player(MY_PARTY_NAMES[1]) }
-    public static getHealer() { return get_player(MY_PARTY_NAMES[2]) }
+    public static getMage() { return get_player(MY_PARTY_NAMES[1]) }
+    public static getRanger() { return get_player(MY_PARTY_NAMES[2]) }
+    public static getHealer() { return get_player(MY_PARTY_NAMES[3]) }
 }
