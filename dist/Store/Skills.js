@@ -28,12 +28,23 @@ var Priest = /** @class */ (function () {
     }
     return Priest;
 }());
+var Ranger = /** @class */ (function () {
+    function Ranger() {
+        this.Supershot = {
+            NiceName: "Supershot",
+            SpellName: "supershot",
+            Cooldown: 30
+        };
+    }
+    return Ranger;
+}());
 var Skills = /** @class */ (function () {
     function Skills() {
     }
     Skills.Mage = new Mage();
     Skills.Warrior = new Warrior();
     Skills.Priest = new Priest();
+    Skills.Ranger = new Ranger();
     return Skills;
 }());
 export { Skills };

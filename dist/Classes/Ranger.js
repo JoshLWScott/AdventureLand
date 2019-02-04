@@ -10,19 +10,29 @@ var __extends = (this && this.__extends) || (function () {
 })();
 import { ClassController } from "./ClassController";
 import { COMBAT_ENABLED, FOCUS_TANK_TARGET } from "../Store/Constants";
+import { Skills } from "../Store/Skills";
 var Ranger = /** @class */ (function (_super) {
     __extends(Ranger, _super);
     function Ranger() {
         var _this = _super.call(this) || this;
         _this.ClassName = "Ranger";
         _this.Target = null;
+        _this.LastCast_Supershot = new Date();
         game_log("Injected ClassController: " + _this.ClassName);
         return _this;
     }
+    Ranger.prototype.castSupershot = function () {
+        if (this.Target !== null && this.timeFromLastCast(this.LastCast_Supershot) > Skills.Ranger.Supershot.Cooldown) {
+            game_log("Casting Supershot");
+            this.LastCast_Supershot = new Date();
+            use_skill(Skills.Ranger.Supershot.SpellName, this.Target);
+        }
+    };
     Ranger.prototype.runClassLoop = function () {
         if (COMBAT_ENABLED) {
             FOCUS_TANK_TARGET ? this.targetTankEntity() : this.targetLocalEntity();
             this.moveToTarget();
+            this.castSupershot();
             this.attackTarget();
         }
         else

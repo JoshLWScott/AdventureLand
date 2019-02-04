@@ -44,6 +44,7 @@ class Priest extends ClassController {
         return false
     }
 
+    // @ts-ignore
     private curseTarget(): void {
         if ( this.Target !== null &&
             this.timeFromLastCast(this.LastCast_Curse) > Skills.Priest.Curse.Cooldown &&

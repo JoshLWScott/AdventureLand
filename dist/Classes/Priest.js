@@ -44,6 +44,7 @@ var Priest = /** @class */ (function (_super) {
         }
         return false;
     };
+    // @ts-ignore
     Priest.prototype.curseTarget = function () {
         if (this.Target !== null &&
             this.timeFromLastCast(this.LastCast_Curse) > Skills.Priest.Curse.Cooldown &&
