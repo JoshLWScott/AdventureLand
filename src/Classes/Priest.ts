@@ -61,7 +61,7 @@ class Priest extends ClassController {
             FOCUS_TANK_TARGET ? this.targetTankEntity() : this.targetLocalEntity()
             this.moveToTarget()
 
-            this.curseTarget()
+            // this.curseTarget()
             this.attackTarget()
 
         }
