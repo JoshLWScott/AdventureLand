@@ -3,7 +3,7 @@ import {MyParty} from "../Store/MyParty";
 
 export abstract class ClassController {
 
-    readonly TargetName: string = "snake";
+    readonly TargetName: string = "bee";
 
     abstract ClassName: string;
     abstract Target: Player | Monster | Character;
