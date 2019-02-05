@@ -17,7 +17,6 @@ var Mage = /** @class */ (function (_super) {
     function Mage() {
         var _this = _super.call(this) || this;
         _this.ClassName = "Mage";
-        _this.Target = null;
         _this.LastCast_Energize = new Date();
         _this.LastCast_ManaBurst = new Date();
         game_log("Injected ClassController: " + _this.ClassName);

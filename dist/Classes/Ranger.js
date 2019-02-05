@@ -16,7 +16,6 @@ var Ranger = /** @class */ (function (_super) {
     function Ranger() {
         var _this = _super.call(this) || this;
         _this.ClassName = "Ranger";
-        _this.Target = null;
         _this.LastCast_Supershot = new Date();
         game_log("Injected ClassController: " + _this.ClassName);
         return _this;

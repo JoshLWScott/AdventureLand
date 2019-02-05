@@ -8,7 +8,6 @@ class Priest extends ClassController {
     readonly curseTargetMaxHealth = 1000
 
     ClassName: string = "Priest";
-    Target: Player | Monster | Character = null;
 
     HealTarget: Player = null;
     HealWeight: number = null;

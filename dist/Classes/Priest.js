@@ -18,7 +18,6 @@ var Priest = /** @class */ (function (_super) {
         _this.minHealPercentage = 0.80;
         _this.curseTargetMaxHealth = 1000;
         _this.ClassName = "Priest";
-        _this.Target = null;
         _this.HealTarget = null;
         _this.HealWeight = null;
         _this.LastCast_Curse = new Date();

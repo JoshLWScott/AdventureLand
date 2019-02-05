@@ -4,7 +4,6 @@ import {COMBAT_ENABLED} from "../Store/Constants";
 class Warrior extends ClassController {
 
     ClassName: string = "Warrior";
-    Target: any = null;
 
     constructor() {
         super()

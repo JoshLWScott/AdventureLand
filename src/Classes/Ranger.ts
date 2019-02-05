@@ -5,7 +5,6 @@ import {Skills} from "../Store/Skills";
 class Ranger extends ClassController {
 
     ClassName: string = "Ranger";
-    Target: Player | Monster | Character = null;
 
     LastCast_Supershot: Date = new Date();
 

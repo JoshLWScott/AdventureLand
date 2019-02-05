@@ -15,7 +15,6 @@ var Warrior = /** @class */ (function (_super) {
     function Warrior() {
         var _this = _super.call(this) || this;
         _this.ClassName = "Warrior";
-        _this.Target = null;
         game_log("Injected ClassController: " + _this.ClassName);
         return _this;
     }

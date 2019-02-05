@@ -3,7 +3,7 @@ import { MyParty } from "../Store/MyParty";
 var ClassController = /** @class */ (function () {
     function ClassController() {
         var _this = this;
-        this.TargetName = "bee";
+        this.TargetName = "snake";
         this.last_minutes_checked = new Date();
         this.last_xp_checked_minutes = character.xp;
         this.last_xp_checked_kill = character.xp;
