@@ -3,7 +3,7 @@ import { MyParty } from "../Store/MyParty";
 var ClassController = /** @class */ (function () {
     function ClassController() {
         var _this = this;
-        this.TargetName = "bee";
+        this.TargetName = "snake";
         this.last_minutes_checked = new Date();
         this.last_xp_checked_minutes = character.xp;
         this.last_xp_checked_kill = character.xp;
@@ -62,6 +62,7 @@ var ClassController = /** @class */ (function () {
             move(MyParty.getTank().real_x, MyParty.getTank().real_y);
         }
     };
+    /* TODO: Move this to it's own class */
     ClassController.prototype.init_xptimer = function (minref) {
         this.minute_refresh = minref || 1;
         // @ts-ignore
