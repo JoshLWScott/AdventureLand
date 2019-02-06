@@ -17,7 +17,7 @@ class Mage extends ClassController {
 
     private castEnergize(target: Player): void {
         if ( target !== null && this.timeFromLastCast(this.LastCast_Energize) > Skills.Mage.Energize.Cooldown ) {
-            if ( this.timeFromLastCast(this.LastCast_Energize) >= 60 || target.mp >= target.max_mp / 2 ) {
+            if ( this.timeFromLastCast(this.LastCast_Energize) >= 60 || target.mp <= target.max_mp / 2 ) {
                 game_log(`Casting Energize on: ${target.name}`);
                 this.LastCast_Energize = new Date()
                 use_skill(Skills.Mage.Energize.SpellName, target)
