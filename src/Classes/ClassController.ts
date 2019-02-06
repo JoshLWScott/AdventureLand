@@ -3,10 +3,10 @@ import {MyParty} from "../Store/MyParty";
 
 export abstract class ClassController {
 
-    readonly TargetName: string = "snake";
+    public TargetName: string = "snake";
+    public Target: Player | Monster | Character;
 
     abstract ClassName: string;
-    public Target: Player | Monster | Character;
     abstract runClassLoop(): void
 
     /* Exp Timer Stuff */
@@ -150,6 +150,10 @@ export abstract class ClassController {
 
         $('#xpcounter').text(counter);
         $('#xprate').text(`${xp_rate} XP/s`);
+    }
+
+    public setTarget(value: string): void {
+        this.TargetName = value
     }
 
 }
