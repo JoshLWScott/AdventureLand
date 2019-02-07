@@ -36,7 +36,8 @@ var Mage = /** @class */ (function (_super) {
             FOCUS_TANK_TARGET ? this.targetTankEntity() : this.targetLocalEntity();
             this.moveToTarget();
             this.attackTarget();
-            this.castEnergize(MyParty.getHealer().mp < MyParty.getHealer().max_mp / 2 ? MyParty.getHealer() : MyParty.getTank() || MyParty.getRanger());
+            if (MyParty.getRanger() !== null)
+                this.castEnergize(MyParty.getRanger());
         }
         else
             this.moveToTank();

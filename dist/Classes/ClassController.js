@@ -119,9 +119,6 @@ var ClassController = /** @class */ (function () {
         $('#xpcounter').text(counter);
         $('#xprate').text(xp_rate + " XP/s");
     };
-    ClassController.prototype.setTarget = function (value) {
-        this.TargetName = value;
-    };
     return ClassController;
 }());
 export { ClassController };

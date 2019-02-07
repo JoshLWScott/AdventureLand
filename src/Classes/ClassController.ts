@@ -7,13 +7,14 @@ export abstract class ClassController {
     public Target: Player | Monster | Character;
 
     abstract ClassName: string;
-    abstract runClassLoop(): void
+    abstract runClassLoop(): void;
 
     /* Exp Timer Stuff */
     private minute_refresh: any;
     private last_minutes_checked: Date = new Date();
-    private last_xp_checked_minutes: number = character.xp
-    private last_xp_checked_kill: number = character.xp
+    private last_xp_checked_minutes: number = character.xp;
+    private last_xp_checked_kill: number = character.xp;
+
 
     protected constructor() {
         this.init_xptimer(1);
@@ -26,11 +27,11 @@ export abstract class ClassController {
             this.usePotions();
 
             if ( FOLLOW_TANK )
-                this.moveToTank()
+                this.moveToTank();
 
 
-            this.runClassLoop()
-            this.update_xptimer()
+            this.runClassLoop();
+            this.update_xptimer();
         }, 1000 / 4)
     }
 
@@ -152,9 +153,6 @@ export abstract class ClassController {
         $('#xprate').text(`${xp_rate} XP/s`);
     }
 
-    public setTarget(value: string): void {
-        this.TargetName = value
-    }
 
 }
 
