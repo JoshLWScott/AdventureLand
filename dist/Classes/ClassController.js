@@ -28,7 +28,7 @@ var ClassController = /** @class */ (function () {
         }, 1000 / 4);
     }
     ClassController.prototype.moveToFarmLocation = function () {
-        var target = Locations.Monsters[this.TargetName];
+        var target = Locations.Monsters["snake"];
         if (target !== null && target !== undefined && distanceToCoords(target.x, target.y, this.character) < 50) {
             this.isMovingToLocation = true;
             smart_move({ map: target.map, x: target.x, y: target.y });
