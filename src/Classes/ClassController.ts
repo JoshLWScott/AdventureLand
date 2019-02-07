@@ -45,10 +45,8 @@ export abstract class ClassController {
 
 
     private moveToFarmLocation(): void {
-        let target = Locations.Monsters[this.TargetName];
-        game_log(target)
-        return
-        if ( target !== null && distanceToCoords(target.x, target.y, this.character) < 50 ) {
+        let target = Locations.Monsters[this.TargetName]
+        if ( target !== null && target !== undefined && distanceToCoords(target.x, target.y, this.character) < 50 ) {
             this.isMovingToLocation = true;
             smart_move({ map: target.map, x: target.x, y: target.y })
         }
