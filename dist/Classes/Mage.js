@@ -39,8 +39,6 @@ var Mage = /** @class */ (function (_super) {
             if (MyParty.getRanger() !== null)
                 this.castEnergize(MyParty.getRanger());
         }
-        else
-            this.moveToTank();
     };
     return Mage;
 }(ClassController));

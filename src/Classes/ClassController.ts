@@ -1,10 +1,14 @@
-import {FOLLOW_TANK} from "../Store/Constants";
 import {MyParty} from "../Store/MyParty";
+import {buyPotions, countItems, distanceToCoords, get_npc} from "../Helpers";
+import {Locations} from "../Store/Locations";
 
 export abstract class ClassController {
 
     public TargetName: string = "snake";
     public Target: Player | Monster | Character;
+    public isMovingToLocation: boolean = false;
+    public isResupplying: boolean = false;
+    public character: Character = null;
 
     abstract ClassName: string;
     abstract runClassLoop(): void;
@@ -19,20 +23,63 @@ export abstract class ClassController {
     protected constructor() {
         this.init_xptimer(1);
         setInterval(() => {
-            if(character.rip || is_moving(character)) return;
+
+            this.character = character;
+
+            if(this.character.rip || is_moving(this.character)) return;
 
             loot(true);
 
-            this.Target = get_targeted_monster();
-            this.usePotions();
+            this.checkSupplies();
 
-            if ( FOLLOW_TANK )
-                this.moveToTank();
+            if ( !this.isResupplying && !this.isMovingToLocation ) {
+                this.Target = get_targeted_monster();
+                this.moveToFarmLocation();
+                this.usePotions();
+                this.runClassLoop();
+            }
 
-
-            this.runClassLoop();
             this.update_xptimer();
         }, 1000 / 4)
+    }
+
+
+    private moveToFarmLocation(): void {
+        let target = Locations.Monsters[this.TargetName]
+        if ( target !== null && distanceToCoords(target.x, target.y, this.character) < 50 ) {
+            this.isMovingToLocation = true;
+            smart_move({ map: target.map, x: target.x, y: target.y })
+        }
+        else this.isMovingToLocation = false
+    }
+
+
+    public checkSupplies(): void {
+        let requiredSupplies = ["hpot0", "mpot0"];
+        requiredSupplies.map(item => {
+
+            if (countItems(item) < 100)
+                this.resupplyPotions()
+            else this.isResupplying = false
+        })
+    }
+
+    public resupplyPotions(): void {
+
+        this.isResupplying = true;
+
+        let distanceToMerchant = null;
+        let potionMerchant = get_npc("fancypots", this.character);
+
+        if(potionMerchant != null)
+            distanceToMerchant = distanceToCoords(potionMerchant.position[0], potionMerchant.position[1], this.character);
+
+        // @ts-ignore
+        if (!smart.moving && (distanceToMerchant == null || distanceToMerchant > 100))
+            smart_move({ to:"potions"});
+
+        if(distanceToMerchant != null && distanceToMerchant < 100)
+            buyPotions(1000, this.character)
     }
 
     /* Calculate the amount of seconds it's been since the last cast */
@@ -42,7 +89,7 @@ export abstract class ClassController {
 
     public targetLocalEntity(): void {
         if(!this.Target) {
-            this.Target = get_nearest_monster({min_xp:100,max_att:200, type: this.TargetName});
+            this.Target = get_nearest_monster({type: this.TargetName});
             if (this.Target) { change_target(this.Target) }
             else set_message("No Monsters");
         }
@@ -58,8 +105,8 @@ export abstract class ClassController {
         if( this.Target !== null && !in_attack_range(this.Target) ) {
             set_message("Moving to target")
             move(
-                character.x+(this.Target.real_x-character.x)/2,
-                character.y+(this.Target.real_y-character.y)/2
+                this.character.x+(this.Target.real_x - this.character.x)/2,
+                this.character.y+(this.Target.real_y - this.character.y)/2
             );
         }
     }
@@ -72,20 +119,12 @@ export abstract class ClassController {
     }
 
     public usePotions(): void {
-        if ( character.hp < character.max_hp - 200 && can_use("hp") )
+        if ( this.character.hp < this.character.max_hp - 200 && can_use("hp") )
             use("hp")
-        if ( character.mp < character.max_mp - 300 && can_use("mp") )
+        if ( this.character.mp < this.character.max_mp - 300 && can_use("mp") )
             use("mp")
     }
 
-    public moveToTank(): void {
-        if ( MyParty.getTank() !== null ) {
-            move(
-                MyParty.getTank().real_x,
-                MyParty.getTank().real_y,
-            );
-        }
-    }
 
     /* TODO: Move this to it's own class */
     private init_xptimer(minref): void {
@@ -127,7 +166,7 @@ export abstract class ClassController {
     }
 
     private update_xptimer(): void {
-        if (character.xp == this.last_xp_checked_kill) return;
+        if (this.character.xp == this.last_xp_checked_kill) return;
 
         // @ts-ignore
         let $ = parent.$;
@@ -135,15 +174,15 @@ export abstract class ClassController {
 
         let time = Math.round((now.getTime() - this.last_minutes_checked.getTime()) / 1000);
         if (time < 1) return; // 1s safe delay
-        let xp_rate = Math.round((character.xp - this.last_xp_checked_minutes) / time);
+        let xp_rate = Math.round((this.character.xp - this.last_xp_checked_minutes) / time);
         if (time > 60 * this.minute_refresh) {
             this.last_minutes_checked = new Date();
-            this.last_xp_checked_minutes = character.xp;
+            this.last_xp_checked_minutes = this.character.xp;
         }
-        this.last_xp_checked_kill = character.xp;
+        this.last_xp_checked_kill = this.character.xp;
 
         // @ts-ignore
-        let xp_missing = parent.G.levels[character.level] - character.xp;
+        let xp_missing = parent.G.levels[this.character.level] - this.character.xp;
         let seconds = Math.round(xp_missing / xp_rate);
         let minutes = Math.round(seconds / 60);
         let hours = Math.round(minutes / 60);

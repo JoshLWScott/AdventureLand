@@ -26,7 +26,6 @@ class Mage extends ClassController {
     }
 
     runClassLoop(): void {
-
         if ( COMBAT_ENABLED ) {
             FOCUS_TANK_TARGET ? this.targetTankEntity() : this.targetLocalEntity()
             this.moveToTarget()
@@ -35,7 +34,6 @@ class Mage extends ClassController {
             if ( MyParty.getRanger() !== null )
                 this.castEnergize( MyParty.getRanger() )
         }
-        else this.moveToTank();
     }
 
 

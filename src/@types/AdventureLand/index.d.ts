@@ -270,6 +270,17 @@ interface INearestMonster {
     path_check?: boolean
 }
 
+declare class smart {
+    moving: boolean
+    map: string
+    x: number
+    y: number
+    plot: any
+    edge: number
+    use_town: boolean
+}
+
+declare function smart_move(data: object): void
 declare function activate(num: number): void
 declare function attack(target: Player | Monster): void
 declare function buy(name: string, quantity: number): void

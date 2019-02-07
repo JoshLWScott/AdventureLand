@@ -61,8 +61,6 @@ var Priest = /** @class */ (function (_super) {
             // this.curseTarget()
             this.attackTarget();
         }
-        else
-            this.moveToTank();
     };
     return Priest;
 }(ClassController));

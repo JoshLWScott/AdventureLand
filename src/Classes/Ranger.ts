@@ -34,7 +34,6 @@ class Ranger extends ClassController {
 
             this.attackTarget()
         }
-        else this.moveToTank();
     }
 }
 

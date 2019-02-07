@@ -34,8 +34,6 @@ var Ranger = /** @class */ (function (_super) {
             this.castSupershot();
             this.attackTarget();
         }
-        else
-            this.moveToTank();
     };
     return Ranger;
 }(ClassController));

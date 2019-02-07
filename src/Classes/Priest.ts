@@ -65,7 +65,6 @@ class Priest extends ClassController {
             this.attackTarget()
 
         }
-        else this.moveToTank();
     }
 }
 
