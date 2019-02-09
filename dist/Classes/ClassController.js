@@ -1,10 +1,10 @@
 import { MyParty } from "../Store/MyParty";
-import { buyPotions, countItems, distanceToCoords, get_npc } from "../Helpers";
+import { buyPotions, countItems, distanceToCoords, getNPC } from "../Helpers";
 import { Locations } from "../Store/Locations";
 var ClassController = /** @class */ (function () {
     function ClassController() {
         var _this = this;
-        this.TargetName = "snake";
+        this.TargetName = "minimush";
         this.isMovingToLocation = false;
         this.isResupplying = false;
         this.character = null;
@@ -49,7 +49,7 @@ var ClassController = /** @class */ (function () {
     ClassController.prototype.resupplyPotions = function () {
         this.isResupplying = true;
         var distanceToMerchant = null;
-        var potionMerchant = get_npc("fancypots", this.character);
+        var potionMerchant = getNPC("fancypots", this.character);
         if (potionMerchant != null)
             distanceToMerchant = distanceToCoords(potionMerchant.position[0], potionMerchant.position[1], this.character);
         // @ts-ignore

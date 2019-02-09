@@ -1,4 +1,4 @@
-export function get_npc(name, character) {
+export function getNPC(name, character) {
     // @ts-ignore
     var npc = parent.G.maps[character.map].npcs.filter(function (npc) { return npc.id == name; });
     return npc.length > 0 ? npc[0] : null;
@@ -28,7 +28,6 @@ export function buyPotions(amount, character) {
             }
         });
     }
-    else {
+    else
         game_log("Inventory Full!");
-    }
 }

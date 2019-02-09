@@ -1,4 +1,4 @@
-export function get_npc(name: string, character: Character) : any {
+export function getNPC(name: string, character: Character) : any {
     // @ts-ignore
     let npc = parent.G.maps[character.map].npcs.filter(npc => npc.id == name);
     return npc.length > 0 ? npc[0] : null
@@ -14,33 +14,22 @@ export function countItems(name) {
 }
 
 export function buyPotions(amount: number, character: Character): void {
-
     let potion_types = ["hpot0", "mpot0"];
-
     if(character.esize > 0) {
-
         potion_types.map((name, index) => {
 
             // @ts-ignore
             let itemDetails = parent.G.items[name];
-
             if(itemDetails != null) {
                 let totalCost = itemDetails.g * amount;
-
                 if(character.gold >= totalCost) {
                     if(countItems(name) < 100)
                         buy(name, amount);
                 }
                 else game_log("Not Enough Gold!");
             }
-
         });
-
-
     }
-    else
-    {
-        game_log("Inventory Full!");
-    }
+    else game_log("Inventory Full!");
 
 }

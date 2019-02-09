@@ -1,10 +1,10 @@
 import {MyParty} from "../Store/MyParty";
-import {buyPotions, countItems, distanceToCoords, get_npc} from "../Helpers";
+import {buyPotions, countItems, distanceToCoords, getNPC} from "../Helpers";
 import {Locations} from "../Store/Locations";
 
 export abstract class ClassController {
 
-    public TargetName: string = "snake";
+    public TargetName: string = "minimush";
     public Target: Player | Monster | Character;
     public isMovingToLocation: boolean = false;
     public isResupplying: boolean = false;
@@ -69,7 +69,7 @@ export abstract class ClassController {
         this.isResupplying = true;
 
         let distanceToMerchant = null;
-        let potionMerchant = get_npc("fancypots", this.character);
+        let potionMerchant = getNPC("fancypots", this.character);
 
         if(potionMerchant != null)
             distanceToMerchant = distanceToCoords(potionMerchant.position[0], potionMerchant.position[1], this.character);
