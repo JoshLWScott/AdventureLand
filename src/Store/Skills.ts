@@ -14,8 +14,7 @@ class Mage {
     public Energize: ISpell = {
         NiceName: "Energize",
         SpellName: "energize",
-        Cooldown: 4,
-        ManaCost: 300
+        Cooldown: 4
     }
 }
 
@@ -42,6 +41,7 @@ class Ranger {
         NiceName: "3 Shot",
         SpellName: "3shot",
         Cooldown: 0.25,
+        ManaCost: 300
     }
 }
 

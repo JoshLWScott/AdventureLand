@@ -22,7 +22,7 @@ class Ranger extends ClassController {
     }
 
     private castThreeShot(): void {
-        if ( this.Target !== null && this.character.mp > Skills.Ranger.ThreeShot.ManaCost ) {
+        if (this.character.mp > Skills.Ranger.ThreeShot.ManaCost ) {
             use_skill(Skills.Ranger.ThreeShot.SpellName)
         }
     }

@@ -8,8 +8,7 @@ var Mage = /** @class */ (function () {
         this.Energize = {
             NiceName: "Energize",
             SpellName: "energize",
-            Cooldown: 4,
-            ManaCost: 300
+            Cooldown: 4
         };
     }
     return Mage;
@@ -40,6 +39,7 @@ var Ranger = /** @class */ (function () {
             NiceName: "3 Shot",
             SpellName: "3shot",
             Cooldown: 0.25,
+            ManaCost: 300
         };
     }
     return Ranger;
