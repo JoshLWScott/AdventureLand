@@ -20,7 +20,6 @@ var Ranger = /** @class */ (function (_super) {
         var _this = _super.call(this) || this;
         _this.ClassName = "Ranger";
         _this.LastCast_Supershot = new Date();
-        _this.LastCast_Threeshot = new Date();
         game_log("Injected ClassController: " + _this.ClassName);
         return _this;
     }
@@ -32,9 +31,8 @@ var Ranger = /** @class */ (function (_super) {
         }
     };
     Ranger.prototype.castThreeShot = function () {
-        if (this.Target !== null && this.timeFromLastCast(this.LastCast_Threeshot) > Skills.Ranger.ThreeShot.Cooldown && this.character.mp > Skills.Ranger.ThreeShot.ManaCost) {
-            this.LastCast_Threeshot = new Date();
-            use_skill(Skills.Ranger.ThreeShot.SpellName, this.Target);
+        if (this.Target !== null && this.character.mp > Skills.Ranger.ThreeShot.ManaCost) {
+            use_skill(Skills.Ranger.ThreeShot.SpellName);
         }
     };
     Ranger.prototype.runClassLoop = function () {

@@ -7,8 +7,6 @@ class Ranger extends ClassController {
     ClassName: string = "Ranger";
 
     LastCast_Supershot: Date = new Date();
-    LastCast_Threeshot: Date = new Date();
-
 
     constructor() {
         super()
@@ -24,9 +22,8 @@ class Ranger extends ClassController {
     }
 
     private castThreeShot(): void {
-        if ( this.Target !== null && this.timeFromLastCast(this.LastCast_Threeshot) > Skills.Ranger.ThreeShot.Cooldown && this.character.mp > Skills.Ranger.ThreeShot.ManaCost ) {
-            this.LastCast_Threeshot = new Date()
-            use_skill(Skills.Ranger.ThreeShot.SpellName, this.Target)
+        if ( this.Target !== null && this.character.mp > Skills.Ranger.ThreeShot.ManaCost ) {
+            use_skill(Skills.Ranger.ThreeShot.SpellName)
         }
     }
 
