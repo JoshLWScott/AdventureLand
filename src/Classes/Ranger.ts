@@ -7,6 +7,7 @@ class Ranger extends ClassController {
     ClassName: string = "Ranger";
 
     LastCast_Supershot: Date = new Date();
+    LastCast_Threeshot: Date = new Date();
 
 
     constructor() {
@@ -15,26 +16,29 @@ class Ranger extends ClassController {
     }
 
     private castSupershot(): void {
-
         if ( this.Target !== null && this.timeFromLastCast(this.LastCast_Supershot) > Skills.Ranger.Supershot.Cooldown ) {
             game_log(`Casting Supershot`);
             this.LastCast_Supershot = new Date()
             use_skill(Skills.Ranger.Supershot.SpellName, this.Target)
         }
+    }
 
+    private castThreeShot(): void {
+        if ( this.Target !== null && this.timeFromLastCast(this.LastCast_Threeshot) > Skills.Ranger.ThreeShot.Cooldown && this.character.mp > Skills.Ranger.ThreeShot.ManaCost ) {
+            this.LastCast_Threeshot = new Date()
+            use_skill(Skills.Ranger.ThreeShot.SpellName, this.Target)
+        }
     }
 
     runClassLoop(): void {
-
         if ( COMBAT_ENABLED ) {
-            FOCUS_TANK_TARGET ? this.targetTankEntity() : this.targetLocalEntity()
-            this.moveToTarget()
-
+            FOCUS_TANK_TARGET ? this.targetTankEntity() : this.targetLocalEntity();
+            this.moveToTarget();
+            this.castThreeShot();
             this.castSupershot();
-
-            this.attackTarget()
+            this.attackTarget();
         }
     }
 }
 
-new Ranger()
+new Ranger();

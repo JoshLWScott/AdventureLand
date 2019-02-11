@@ -1,7 +1,10 @@
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -17,6 +20,7 @@ var Ranger = /** @class */ (function (_super) {
         var _this = _super.call(this) || this;
         _this.ClassName = "Ranger";
         _this.LastCast_Supershot = new Date();
+        _this.LastCast_Threeshot = new Date();
         game_log("Injected ClassController: " + _this.ClassName);
         return _this;
     }
@@ -27,10 +31,17 @@ var Ranger = /** @class */ (function (_super) {
             use_skill(Skills.Ranger.Supershot.SpellName, this.Target);
         }
     };
+    Ranger.prototype.castThreeShot = function () {
+        if (this.Target !== null && this.timeFromLastCast(this.LastCast_Threeshot) > Skills.Ranger.ThreeShot.Cooldown && this.character.mp > Skills.Ranger.ThreeShot.ManaCost) {
+            this.LastCast_Threeshot = new Date();
+            use_skill(Skills.Ranger.ThreeShot.SpellName, this.Target);
+        }
+    };
     Ranger.prototype.runClassLoop = function () {
         if (COMBAT_ENABLED) {
             FOCUS_TANK_TARGET ? this.targetTankEntity() : this.targetLocalEntity();
             this.moveToTarget();
+            this.castThreeShot();
             this.castSupershot();
             this.attackTarget();
         }
