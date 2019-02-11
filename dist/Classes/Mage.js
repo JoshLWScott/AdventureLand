@@ -37,10 +37,12 @@ var Mage = /** @class */ (function (_super) {
     Mage.prototype.runClassLoop = function () {
         if (COMBAT_ENABLED) {
             FOCUS_TANK_TARGET ? this.targetTankEntity() : this.targetLocalEntity();
-            this.moveToTarget();
-            this.attackTarget();
-            if (MyParty.getRanger() !== null)
+            // this.moveToTarget()
+            // this.attackTarget()
+            if (MyParty.getRanger() !== null) {
                 this.castEnergize(MyParty.getRanger());
+                move(MyParty.getRanger().real_x, MyParty.getRanger().real_y);
+            }
         }
     };
     return Mage;
