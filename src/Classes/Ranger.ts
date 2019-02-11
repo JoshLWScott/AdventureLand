@@ -14,7 +14,10 @@ class Ranger extends ClassController {
     }
 
     private castSupershot(): void {
-        if ( this.Target !== null && this.timeFromLastCast(this.LastCast_Supershot) > Skills.Ranger.Supershot.Cooldown ) {
+
+
+        if ( this.Target !== null && this.Target.hp > this.character.attack * 1.5 &&
+            this.timeFromLastCast(this.LastCast_Supershot) > Skills.Ranger.Supershot.Cooldown ) {
             game_log(`Casting Supershot`);
             this.LastCast_Supershot = new Date()
             use_skill(Skills.Ranger.Supershot.SpellName, this.Target)
@@ -32,7 +35,7 @@ class Ranger extends ClassController {
             FOCUS_TANK_TARGET ? this.targetTankEntity() : this.targetLocalEntity();
             this.moveToTarget();
             this.castThreeShot();
-            this.castSupershot();
+            this.castSupershot(); /* Disabled for now */
             this.attackTarget();
         }
     }

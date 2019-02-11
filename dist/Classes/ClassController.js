@@ -4,7 +4,7 @@ import { Locations } from "../Store/Locations";
 var ClassController = /** @class */ (function () {
     function ClassController() {
         var _this = this;
-        this.TargetName = "minimush";
+        this.TargetName = "prat";
         this.isMovingToLocation = false;
         this.isResupplying = false;
         this.character = null;

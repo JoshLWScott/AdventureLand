@@ -4,7 +4,7 @@ import {Locations} from "../Store/Locations";
 
 export abstract class ClassController {
 
-    public TargetName: string = "minimush";
+    public TargetName: string = "prat";
     public Target: Player | Monster | Character;
     public isMovingToLocation: boolean = false;
     public isResupplying: boolean = false;
