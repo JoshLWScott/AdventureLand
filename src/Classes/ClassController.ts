@@ -4,7 +4,7 @@ import {Locations} from "../Store/Locations";
 
 export abstract class ClassController {
 
-    public TargetName: string = "prat";
+    public TargetName: string = "";
     public Target: Player | Monster | Character;
     public isMovingToLocation: boolean = false;
     public isResupplying: boolean = false;
@@ -34,6 +34,10 @@ export abstract class ClassController {
 
             if ( !this.isResupplying && !this.isMovingToLocation ) {
                 this.Target = get_targeted_monster();
+
+                if ( this.Target.name !== this.TargetName )
+                    this.TargetName = this.Target.name;
+
                 this.moveToFarmLocation();
                 this.usePotions();
                 this.runClassLoop();

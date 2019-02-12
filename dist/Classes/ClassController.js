@@ -4,7 +4,7 @@ import { Locations } from "../Store/Locations";
 var ClassController = /** @class */ (function () {
     function ClassController() {
         var _this = this;
-        this.TargetName = "prat";
+        this.TargetName = "";
         this.isMovingToLocation = false;
         this.isResupplying = false;
         this.character = null;
@@ -20,6 +20,8 @@ var ClassController = /** @class */ (function () {
             _this.checkSupplies();
             if (!_this.isResupplying && !_this.isMovingToLocation) {
                 _this.Target = get_targeted_monster();
+                if (_this.Target.name !== _this.TargetName)
+                    _this.TargetName = _this.Target.name;
                 _this.moveToFarmLocation();
                 _this.usePotions();
                 _this.runClassLoop();
