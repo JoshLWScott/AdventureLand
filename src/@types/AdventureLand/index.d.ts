@@ -47,7 +47,7 @@ declare class Monster {
     max_hp: number;                 // maximum health points
     xp: number;                     // Experience awarded for killing this monster
     name: string;                   // entity name (for monsters it is null)
-    skin: string;
+    mtype: string;
     angle: number;                  // angle the character is looking at.
     direction: number;              // direction in which the character is looking (0:down,1:left,2:right;3:up)
     real_x: number;                 // x position on map
