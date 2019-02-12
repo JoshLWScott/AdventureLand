@@ -20,7 +20,7 @@ var ClassController = /** @class */ (function () {
             _this.checkSupplies();
             if (!_this.isResupplying && !_this.isMovingToLocation) {
                 _this.Target = get_targeted_monster();
-                if (_this.Target.skin !== _this.TargetName)
+                if (_this.Target !== null && _this.Target.skin !== _this.TargetName)
                     _this.TargetName = _this.Target.skin;
                 _this.moveToFarmLocation();
                 _this.usePotions();

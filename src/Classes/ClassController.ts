@@ -35,7 +35,7 @@ export abstract class ClassController {
             if ( !this.isResupplying && !this.isMovingToLocation ) {
                 this.Target = get_targeted_monster();
 
-                if ( this.Target.skin !== this.TargetName )
+                if ( this.Target !== null && this.Target.skin !== this.TargetName )
                     this.TargetName = this.Target.skin;
 
                 this.moveToFarmLocation();
